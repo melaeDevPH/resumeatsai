@@ -34,7 +34,7 @@ export default function ProjectFields({ items, onChange }) {
               label="Project name"
               value={item.name}
               onChange={(e) => updateItem(item.id, "name", e.target.value)}
-              placeholder="RabiesGuard"
+              placeholder="Project #1"
             />
             <TextField
               id={`proj-link-${item.id}`}

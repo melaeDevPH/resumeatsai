@@ -22,8 +22,7 @@ export default function CoverLetterPreview({ personal, coverLetter }) {
         )}
       </div>
 
-      <p className="mt-8">Sincerely,</p>
-      <p className="mt-6 font-semibold text-ink-900">{personal.fullName || "Your Name"}</p>
+    
     </div>
   );
 }

@@ -65,7 +65,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "The AI response could not be parsed. Please try again." });
     }
 
-    return res.status(200).json({ data: normalizeAiResponse(parsed) });
+    return res.status(200).json({ data: normalizeAiResponse(parsed, formData.certifications) });
   } catch (err) {
     console.error("Unhandled error in /api/generate:", err);
     return res.status(500).json({ error: "Something went wrong while generating your documents." });
@@ -117,6 +117,11 @@ function buildPrompt(formData, mode) {
     )
     .join("\n");
 
+    const certificationsText = (certifications || [])
+  .filter((c) => c.name)
+  .map((c) => `${c.name}${c.issuer ? ` — ${c.issuer}` : ""}${c.date ? ` (${c.date})` : ""}`)
+  .join("; ");
+
   return `You are an expert resume writer and career coach. Using the candidate details below, produce content for ${
     mode === "resume" ? "a resume only" : mode === "cover_letter" ? "a cover letter only" : "a resume AND a cover letter"
   }.
@@ -126,7 +131,7 @@ Name: ${personal.fullName}
 Target job: ${targetJob}
 Background notes: ${summary}
 Raw skills list: ${skills}
-Certifications: ${certifications || "none"}
+Certifications (list as-is, do not rewrite or associate with the target job/company): ${certificationsText || "none"}
 Additional notes: ${additionalNotes || "none"}
 
 Experience:
@@ -160,7 +165,6 @@ INSTRUCTIONS
   "education": [
     { "degree": "string", "school": "string", "dateRange": "string", "honors": "string" }
   ],
-  "certifications": "string",
   "cover_letter": "string"
 }`;
 }
@@ -180,14 +184,14 @@ function safeParseJson(text) {
 }
 
 // Ensures every field the frontend expects is present, even if the model omits one.
-function normalizeAiResponse(data) {
+function normalizeAiResponse(data, certifications) {
   return {
     summary: data.summary || "",
     skills: Array.isArray(data.skills) ? data.skills : [],
     experience: Array.isArray(data.experience) ? data.experience : [],
     projects: Array.isArray(data.projects) ? data.projects : [],
     education: Array.isArray(data.education) ? data.education : [],
-    certifications: data.certifications || "",
+    certifications: Array.isArray(certifications) ? certifications : [],
     cover_letter: data.cover_letter || "",
   };
 }

@@ -41,7 +41,7 @@ export default function ExperienceFields({ items, onChange, error }) {
               label="Company"
               value={item.company}
               onChange={(e) => updateItem(item.id, "company", e.target.value)}
-              placeholder="LGU San Carlos City"
+              placeholder="Google"
             />
             <TextField
               id={`exp-location-${item.id}`}
@@ -56,7 +56,7 @@ export default function ExperienceFields({ items, onChange, error }) {
                 label="Start date"
                 value={item.startDate}
                 onChange={(e) => updateItem(item.id, "startDate", e.target.value)}
-                placeholder="Jan 2023"
+                placeholder="Jan 2025"
               />
               <TextField
                 id={`exp-end-${item.id}`}

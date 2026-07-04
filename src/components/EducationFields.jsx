@@ -34,7 +34,7 @@ export default function EducationFields({ items, onChange }) {
               label="School"
               value={item.school}
               onChange={(e) => updateItem(item.id, "school", e.target.value)}
-              placeholder="Central Philippine State University"
+              placeholder="University of the Philippines"
             />
             <TextField
               id={`edu-degree-${item.id}`}
@@ -63,7 +63,7 @@ export default function EducationFields({ items, onChange }) {
                 label="End year"
                 value={item.endDate}
                 onChange={(e) => updateItem(item.id, "endDate", e.target.value)}
-                placeholder="2023"
+                placeholder="2026"
               />
             </div>
           </div>

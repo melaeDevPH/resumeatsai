@@ -155,15 +155,23 @@ export function buildResumeDocument(personal, aiData) {
     });
   }
 
-  if (aiData.certifications) {
-    children.push(sectionHeading("Certifications"));
+ if (aiData.certifications?.length) {
+  children.push(sectionHeading("Certifications"));
+  aiData.certifications.forEach((cert) => {
+    const line = [cert.name, cert.issuer].filter(Boolean).join(" — ");
     children.push(
       new Paragraph({
-        spacing: { after: 120 },
-        children: [new TextRun({ text: aiData.certifications, size: 21, font: FONT })],
+        spacing: { after: 60 },
+        children: [
+          new TextRun({ text: line, size: 21, font: FONT }),
+          cert.date
+            ? new TextRun({ text: `  (${cert.date})`, size: 19, italics: true, color: "64748B", font: FONT })
+            : new TextRun({ text: "" }),
+        ],
       })
     );
-  }
+  });
+}
 
   return new Document({
     sections: [{ properties: {}, children }],

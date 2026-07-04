@@ -97,11 +97,21 @@ export default function ResumePreview({ personal, data }) {
         </Section>
       )}
 
-      {data.certifications && (
-        <Section title="Certifications">
-          <p className="leading-relaxed text-ink-700">{data.certifications}</p>
-        </Section>
-      )}
+  {!!data.certifications?.length && (
+  <Section title="Certifications">
+    <div className="space-y-2">
+      {data.certifications.map((cert) => (
+        <div key={cert.id} className="flex flex-wrap items-baseline justify-between gap-x-3">
+          <p className="font-semibold text-ink-900">
+            {cert.name}
+            {cert.issuer && <span className="font-normal text-ink-700"> — {cert.issuer}</span>}
+          </p>
+          {cert.date && <p className="whitespace-nowrap text-xs italic text-ink-500">{cert.date}</p>}
+        </div>
+      ))}
+    </div>
+  </Section>
+)}
     </div>
   );
 }

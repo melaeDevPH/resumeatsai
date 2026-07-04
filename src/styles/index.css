@@ -19,9 +19,9 @@
   textarea:focus-visible,
   select:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 1px solid #25b3eb;
+    outline-offset: 1px;
+  border-radius: 1rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -80,10 +80,12 @@
     @apply mb-1.5 block text-sm font-medium text-ink-700;
   }
 
-  .field-input {
-    @apply w-full rounded-lg border border-ink-300/70 bg-white px-3.5 py-2.5 text-sm text-ink-900
-      placeholder:text-ink-500/60 transition-colors duration-150 focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
-  }
+.field-input {
+  @apply w-full rounded-2xl border border-ink-300/70 bg-white px-3.5 py-2.5 text-sm text-ink-900
+    placeholder:text-ink-500/60 transition-colors duration-150
+    appearance-none outline-none
+    focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+}
 
   .field-hint {
     @apply mt-1 text-xs text-ink-500;
