@@ -46,13 +46,20 @@ export default function FeatureCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="card p-6"
+            whileHover={{ y: -4 }}
+            className="card group relative overflow-hidden border border-transparent p-6 transition-colors duration-300 hover:border-brand-200 hover:shadow-lg"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+            <motion.span
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white"
+              whileHover={{ rotate: -6 }}
+              transition={{ type: "spring", stiffness: 300, damping: 12 }}
+            >
               <feature.icon size={19} />
-            </span>
+            </motion.span>
             <h3 className="mt-4 font-display text-base font-semibold text-ink-900">{feature.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-700">{feature.description}</p>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100" />
           </motion.div>
         ))}
       </div>

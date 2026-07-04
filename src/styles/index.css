@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  
   html {
     scroll-behavior: smooth;
   }
@@ -59,6 +60,20 @@
 
 .scroll-styled::-webkit-scrollbar-thumb:hover {
   background-color: #64748b;
+}
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-gradient-move {
+  animation: gradient-move 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.group:hover .bg-gradient-move {
+  animation-play-state: running;
 }
   .container-app {
     @apply mx-auto w-full max-w-6xl px-6;
