@@ -1,18 +1,4 @@
-# ResumeAI
 
-AI-powered resume and cover letter generator. Fill in one form, get an ATS-friendly resume and a tailored cover letter — previewed instantly and downloadable as real `.docx` files.
-
-**Live demo:** _add your Vercel URL here_
-**Repository:** _add your GitHub URL here_
-
-![ResumeAI landing page](./docs/screenshot-landing.png)
-![ResumeAI generator page](./docs/screenshot-generator.png)
-
-> Screenshots above are placeholders — replace `docs/screenshot-landing.png` and `docs/screenshot-generator.png` with your own after deploying.
-
----
-
-## Overview
 
 ResumeAI takes a single structured form (personal info, experience, projects, education, target job) and turns it into:
 
@@ -51,7 +37,7 @@ The AI call happens entirely on the backend. The API key is never sent to, or ac
 
 **Backend**
 - Vercel Serverless Functions (Node.js)
-- Google Gemini API (`gemini-1.5-flash`, structured JSON output)
+- Google Gemini API (`gemini-flash-latest`, structured JSON output)
 
 **Document generation**
 - `docx` (build real Word documents)
@@ -176,12 +162,3 @@ Then open `http://localhost:5173`.
   "certifications": "string",
   "cover_letter": "string"
 }
-```
-
-This is the same contract consumed by `ResumePreview.jsx`, `CoverLetterPreview.jsx`, and `docxGenerator.js`.
-
----
-
-## License
-
-MIT — use this as a portfolio piece or a starting point for your own tool.
